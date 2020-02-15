@@ -190,7 +190,7 @@ public class GasBuffer
 					continue;
 				}
 				
-				if(world != null && world.getBlock(entry[1], entry[2], entry[3]) instanceof BlockGas)
+				if(/*world != null && */world.getBlock(entry[1], entry[2], entry[3]) instanceof BlockGas)
 				{
 					Block block = world.getBlock(entry[1], entry[2], entry[3]);
 					world.scheduleBlockUpdateWithPriority(entry[1], entry[2], entry[3], block, 1, 0);

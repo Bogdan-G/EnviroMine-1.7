@@ -166,7 +166,7 @@ public class HudItemHydration extends HudItem	{
 	@Override
 	public ResourceLocation getResource(String type) 
 	{
-		if(type == "TintOverlay") return Gui_EventManager.blurOverlayResource;
+		if(type.equals("TintOverlay")) return Gui_EventManager.blurOverlayResource;
 		else return Gui_EventManager.guiResource;
 
 	}

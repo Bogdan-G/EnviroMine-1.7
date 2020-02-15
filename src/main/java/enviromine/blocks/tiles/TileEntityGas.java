@@ -127,7 +127,7 @@ public class TileEntityGas extends TileEntity
 			TileEntity tile5 = this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord + 1);
 			TileEntity tile6 = this.worldObj.getTileEntity(this.xCoord, this.yCoord, this.zCoord - 1);
 			
-			if(tile1 != null && tile1 instanceof TileEntityGas)
+			if(tile1 instanceof TileEntityGas)
 			{
 				TileEntityGas gasTile1 = (TileEntityGas)tile1;
 				
@@ -136,7 +136,7 @@ public class TileEntityGas extends TileEntity
 					this.opacity = gasTile1.opacity;
 				}
 			}
-			if(tile2 != null && tile2 instanceof TileEntityGas)
+			if(tile2 instanceof TileEntityGas)
 			{
 				TileEntityGas gasTile2 = (TileEntityGas)tile2;
 				
@@ -145,7 +145,7 @@ public class TileEntityGas extends TileEntity
 					this.opacity = gasTile2.opacity;
 				}
 			}
-			if(tile3 != null && tile3 instanceof TileEntityGas)
+			if(tile3 instanceof TileEntityGas)
 			{
 				TileEntityGas gasTile3 = (TileEntityGas)tile3;
 				
@@ -154,7 +154,7 @@ public class TileEntityGas extends TileEntity
 					this.opacity = gasTile3.opacity;
 				}
 			}
-			if(tile4 != null && tile4 instanceof TileEntityGas)
+			if(tile4 instanceof TileEntityGas)
 			{
 				TileEntityGas gasTile4 = (TileEntityGas)tile4;
 				
@@ -163,7 +163,7 @@ public class TileEntityGas extends TileEntity
 					this.opacity = gasTile4.opacity;
 				}
 			}
-			if(tile5 != null && tile5 instanceof TileEntityGas)
+			if(tile5 instanceof TileEntityGas)
 			{
 				TileEntityGas gasTile5 = (TileEntityGas)tile5;
 				
@@ -172,7 +172,7 @@ public class TileEntityGas extends TileEntity
 					this.opacity = gasTile5.opacity;
 				}
 			}
-			if(tile6 != null && tile6 instanceof TileEntityGas)
+			if(tile6 instanceof TileEntityGas)
 			{
 				TileEntityGas gasTile6 = (TileEntityGas)tile6;
 				
@@ -246,7 +246,7 @@ public class TileEntityGas extends TileEntity
 			TileEntity tile1 = this.worldObj.getTileEntity(this.xCoord, this.yCoord + 1, this.zCoord);
 			TileEntity tile2 = this.worldObj.getTileEntity(this.xCoord, this.yCoord - 1, this.zCoord);
 			
-			if(tile1 != null && tile1 instanceof TileEntityGas)
+			if(tile1 instanceof TileEntityGas)
 			{
 				TileEntityGas gasTile1 = (TileEntityGas)tile1;
 				
@@ -255,7 +255,7 @@ public class TileEntityGas extends TileEntity
 					yMax = 1F;
 				}
 			}
-			if(tile2 != null && tile2 instanceof TileEntityGas)
+			if(tile2 instanceof TileEntityGas)
 			{
 				TileEntityGas gasTile2 = (TileEntityGas)tile2;
 				
@@ -402,10 +402,10 @@ public class TileEntityGas extends TileEntity
 	{
 		NBTTagCompound tags = new NBTTagCompound();
 		this.writeToNBT(tags);
-		if(this.amount <= 0)
+		/*if(this.amount <= 0)
 		{
 			//EnviroMine.logger.log(Level.WARN, "Sent data packet for TileEntityGas with 0 gases!", new Exception());
-		}
+		}*/
 		return new S35PacketUpdateTileEntity(this.xCoord, this.yCoord, this.zCoord, 0, tags);
 	}
 	
@@ -591,7 +591,7 @@ public class TileEntityGas extends TileEntity
 			
 			TileEntity tile = this.worldObj.getTileEntity(this.xCoord + rDir[0], this.yCoord + rDir[1], this.zCoord + rDir[2]);
 			
-			if((tile != null && tile instanceof TileEntityGas) || this.worldObj.getBlock(this.xCoord + rDir[0], this.yCoord + rDir[1], this.zCoord + rDir[2]) == Blocks.air)
+			if((tile instanceof TileEntityGas) || this.worldObj.getBlock(this.xCoord + rDir[0], this.yCoord + rDir[1], this.zCoord + rDir[2]) == Blocks.air)
 			{
 				if(this.offLoadGas(this.xCoord + rDir[0], this.yCoord + rDir[1], this.zCoord + rDir[2], rDir[3]))
 				{
@@ -601,7 +601,7 @@ public class TileEntityGas extends TileEntity
 			
 			tile = this.worldObj.getTileEntity(this.xCoord + rDir[0], this.yCoord + rDir[1], this.zCoord + rDir[2]);
 			
-			if(tile != null && tile instanceof TileEntityGas)
+			if(tile instanceof TileEntityGas)
 			{
 				TileEntityGas gasTile = (TileEntityGas)tile;
 				
@@ -614,14 +614,14 @@ public class TileEntityGas extends TileEntity
 			gDir.remove(index);
 		}
 		
-		if(changed)
-		{
+		//if(changed)
+		//{
 			//this.markDirty();
 			/*this.updateColor();
 			this.updateAmount();
 			this.updateOpacity();
 			this.updateSize();*/
-		}
+		//}
 		return changed;
 	}
 	
@@ -849,7 +849,7 @@ public class TileEntityGas extends TileEntity
 		int fireAmount = this.getGasQuantity(0);
 		TileEntity tile = this.worldObj.getTileEntity(i, j, k);
 		
-		if(tile != null && tile instanceof TileEntityGas)
+		if(tile instanceof TileEntityGas)
 		{
 			TileEntityGas gasTile = (TileEntityGas)tile;
 			

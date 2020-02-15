@@ -55,7 +55,7 @@ public class GaskMaskRefillHandler implements IRecipe
 			} else if (item.getItem() == ObjectHandler.airFilter)
 			{
 					filters.add(item);
-			}else if (item != null)
+			}else// if (item != null)
 			{
 				return false;
 			}
@@ -68,7 +68,7 @@ public class GaskMaskRefillHandler implements IRecipe
 		{
 			return false;
 		}
-	    else if(mask != null && filters.size() >= 1)
+	    else if(/*mask != null && */filters.size() >= 1)
 		{
 			output = mask.copy();
 			if ((maskFill +(filters.size() * filterFill)) <= maskMax)

@@ -11,6 +11,7 @@ import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import org.apache.logging.log4j.Level;
 import cpw.mods.fml.common.network.NetworkRegistry.TargetPoint;
+import enviromine.core.EM_Settings;
 import enviromine.core.EnviroMine;
 import enviromine.network.packet.PacketEnviroMine;
 import enviromine.world.Earthquake;
@@ -103,6 +104,7 @@ public class QuakeCommand extends CommandBase
 		int z = sender.getPlayerCoordinates().posZ;
 		int l = 32 + world.rand.nextInt(128-32);
 		int w = 4 + world.rand.nextInt(32-4);
+		int m = EM_Settings.quakeMode;
 		float a = MathHelper.clamp_float(world.rand.nextFloat() * 4F - 2F, -2F, 2F);
 		
 		try
@@ -118,6 +120,7 @@ public class QuakeCommand extends CommandBase
 				l = Integer.parseInt(astring[2]);
 				w = Integer.parseInt(astring[3]);
 				a = ((Float.parseFloat(astring[4])%360F) - 180F)/90F;
+				m = MathHelper.clamp_int(Integer.parseInt(astring[5]), 0, 4);
 			}
 		} catch(Exception e)
 		{
@@ -131,7 +134,7 @@ public class QuakeCommand extends CommandBase
 			return;
 		}
 		
-		new Earthquake(world, x, z, l, w, a, true);
+		new Earthquake(world, x, z, l, w, m, a, true);
 		EnviroMine.logger.log(Level.INFO, sender.getCommandSenderName() + " spawned earthquake at (" + x + "," + z + ")");
 	}
 }

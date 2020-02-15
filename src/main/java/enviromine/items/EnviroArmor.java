@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemArmor;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -33,13 +34,14 @@ public class EnviroArmor extends ItemArmor //implements ITextureProvider, IArmor
 	@Override
 	public String getArmorTexture(ItemStack stack, Entity entity, int slot, String type)
 	{
-		if (stack.getItem() == ObjectHandler.camelPack)
+		Item stack_item = stack.getItem();
+		if (stack_item == ObjectHandler.camelPack)
 		{
 			return "enviroMine:textures/models/armor/camelpack_layer_1.png";
-		} else if (stack.getItem() == ObjectHandler.gasMask)
+		} else if (stack_item == ObjectHandler.gasMask)
 		{
 			return "enviroMine:textures/models/armor/gasmask_layer_1.png";
-		} else if (stack.getItem() == ObjectHandler.hardHat)
+		} else if (stack_item == ObjectHandler.hardHat)
 		{
 			return "enviroMine:textures/models/armor/hardhat_layer_1.png";
 		} else
@@ -86,13 +88,15 @@ public class EnviroArmor extends ItemArmor //implements ITextureProvider, IArmor
 	 */
 	public boolean getIsRepairable(ItemStack par1ItemStack, ItemStack par2ItemStack)
 	{
-		if (par1ItemStack.getItem() == ObjectHandler.hardHat && (par2ItemStack.getItem() == ObjectHandler.hardHat || par2ItemStack.getItem() == Items.iron_ingot))
+		Item par1ItemStack_item = par1ItemStack.getItem();
+		Item par2ItemStack_item = par2ItemStack.getItem();
+		if (par1ItemStack_item == ObjectHandler.hardHat && (par2ItemStack_item == ObjectHandler.hardHat || par2ItemStack_item == Items.iron_ingot))
 		{
 			return true;
-		} else if (par1ItemStack.getItem() == ObjectHandler.gasMask && (par2ItemStack.getItem() == ObjectHandler.gasMask || par2ItemStack.getItem() == Items.iron_ingot))
+		} else if (par1ItemStack_item == ObjectHandler.gasMask && (par2ItemStack_item == ObjectHandler.gasMask || par2ItemStack_item == Items.iron_ingot))
 		{
 			return true;
-		} else if (par1ItemStack.getItem() == ObjectHandler.camelPack && (par2ItemStack.getItem() == ObjectHandler.camelPack || par2ItemStack.getItem() == Items.leather))
+		} else if (par1ItemStack_item == ObjectHandler.camelPack && (par2ItemStack_item == ObjectHandler.camelPack || par2ItemStack_item == Items.leather))
 		{
 			return true;
 		} else
@@ -105,7 +109,8 @@ public class EnviroArmor extends ItemArmor //implements ITextureProvider, IArmor
 	@Override
 	public void onUpdate(ItemStack armor, World p_77663_2_, Entity entity, int p_77663_4_, boolean p_77663_5_)
 	{
-		if (armor.getItem() == ObjectHandler.camelPack)
+		Item armor_item = armor.getItem();
+		if (armor_item == ObjectHandler.camelPack)
 		{
 			if (!armor.hasTagCompound())
 			{
@@ -125,7 +130,7 @@ public class EnviroArmor extends ItemArmor //implements ITextureProvider, IArmor
 			{
 				armor.getTagCompound().setBoolean("isCamelPack", true);
 			}
-		} else if (armor.getItem() == ObjectHandler.gasMask)
+		} else if (armor_item == ObjectHandler.gasMask)
 		{
 			if (!armor.hasTagCompound())
 			{
@@ -139,17 +144,18 @@ public class EnviroArmor extends ItemArmor //implements ITextureProvider, IArmor
 			{
 				armor.getTagCompound().setInteger("gasMaskMax", 1000);
 			}
-		} else if (armor.getItem() == ObjectHandler.hardHat)
+		}/* else if (armor.getItem() == ObjectHandler.hardHat)
 		{
 		} else
 		{
-		}
+		}*/
 	}
 	
 	@Override
 	public void onCreated(ItemStack armor, World world, EntityPlayer player)
 	{
-		if (armor.getItem() == ObjectHandler.camelPack)
+		Item armor_item = armor.getItem();
+		if (armor_item == ObjectHandler.camelPack)
 		{
 			if (!armor.hasTagCompound())
 			{
@@ -170,7 +176,7 @@ public class EnviroArmor extends ItemArmor //implements ITextureProvider, IArmor
 				armor.getTagCompound().setBoolean("isCamelPack", true);
 			}
 			player.addStat(EnviroAchievements.keepYourCool, 1);
-		} else if (armor.getItem() == ObjectHandler.gasMask)
+		} else if (armor_item == ObjectHandler.gasMask)
 		{
 			if (!armor.hasTagCompound())
 			{
@@ -179,11 +185,11 @@ public class EnviroArmor extends ItemArmor //implements ITextureProvider, IArmor
 			armor.getTagCompound().setInteger("gasMaskFill", 1000);
 			armor.getTagCompound().setInteger("gasMaskMax", 1000);
 			player.addStat(EnviroAchievements.breatheEasy, 1);
-		} else if (armor.getItem() == ObjectHandler.hardHat)
+		} else if (armor_item == ObjectHandler.hardHat)
 		{
 			player.addStat(EnviroAchievements.safetyFirst, 1);
-		} else
+		}/* else
 		{
-		}
+		}*/
 	}
 }

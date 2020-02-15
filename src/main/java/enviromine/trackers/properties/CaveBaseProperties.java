@@ -10,8 +10,8 @@ import enviromine.trackers.properties.helpers.PropertyBase;
 
 public class CaveBaseProperties implements PropertyBase
 {
-	public static final CaveBaseProperties base = new CaveBaseProperties();
 	static String[] CBName;
+	public static final CaveBaseProperties base = new CaveBaseProperties();
 	
 	public CaveBaseProperties()
 	{

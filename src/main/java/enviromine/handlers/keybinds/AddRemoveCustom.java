@@ -72,7 +72,7 @@ public class AddRemoveCustom
 						{
 							Minecraft.getMinecraft().displayGuiScreen(new GuiAddCustom(item));
 
-						} else if(item instanceof Item)
+						} else// if(item instanceof Item)
 						{
 							if(Block.getBlockFromItem(item) != Blocks.air)
 							{
@@ -89,7 +89,7 @@ public class AddRemoveCustom
 					}
 					
 					MovingObjectType type = Minecraft.getMinecraft().objectMouseOver.typeOfHit;
-					if(type.name() == "ENTITY")
+					if(type.name().equals("ENTITY"))
 					{
 						Entity lookingAt = Minecraft.getMinecraft().objectMouseOver.entityHit;
 						int id = 0;
@@ -120,7 +120,7 @@ public class AddRemoveCustom
 							returnValue = EM_ConfigHandler.SaveMyCustom(lookingAt);
 							mc.thePlayer.addChatMessage(new ChatComponentText(lookingAt.getCommandSenderName() + " (" + id + ") " + returnValue));
 						}
-					} else if(type.name() == "BLOCK")
+					} else if(type.name().equals("BLOCK"))
 					{
 						
 						int blockX = Minecraft.getMinecraft().objectMouseOver.blockX;

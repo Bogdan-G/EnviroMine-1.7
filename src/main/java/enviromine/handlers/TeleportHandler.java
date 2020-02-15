@@ -271,9 +271,9 @@ public class TeleportHandler extends Teleporter
 				{
 					for(int z = k - 1; z <= k + 1; z++)
 					{
-						if(y == j - 1)
+						if(y == j - 1 && /*)
 						{
-							if(!this.worldServerInstance.getBlock(x, y, z).isOpaqueCube());
+							if(*/!this.worldServerInstance.getBlock(x, y, z).isOpaqueCube())//;
 							{
 								this.worldServerInstance.setBlock(x, y, z, Blocks.cobblestone);
 								
@@ -287,7 +287,7 @@ public class TeleportHandler extends Teleporter
 										supY -= 1;
 									}
 								}
-							}
+							//}
 						} else
 						{
 							this.worldServerInstance.setBlockToAir(x, y, z);

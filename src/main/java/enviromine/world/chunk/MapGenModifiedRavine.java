@@ -36,7 +36,7 @@ public class MapGenModifiedRavine extends MapGenBase
 	
 	protected void func_151540_a(long p_151540_1_, int p_151540_3_, int p_151540_4_, Block[] p_151540_5_, double p_151540_6_, double p_151540_8_, double p_151540_10_, float p_151540_12_, float p_151540_13_, float p_151540_14_, int p_151540_15_, int p_151540_16_, double p_151540_17_)
 	{
-		Random random = new Random(p_151540_1_);
+		Random random = new org.bogdang.modifications.random.XSTR(p_151540_1_);
 		double d4 = (double)(p_151540_3_ * 16 + 8);
 		double d5 = (double)(p_151540_4_ * 16 + 8);
 		float f3 = 0.0F;

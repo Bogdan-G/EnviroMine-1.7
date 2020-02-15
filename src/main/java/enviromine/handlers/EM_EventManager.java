@@ -434,7 +434,7 @@ public class EM_EventManager
 		{
 			TileEntity tile = event.entityPlayer.worldObj.getTileEntity(event.x, event.y, event.z);
 			
-			if(tile != null & tile instanceof IInventory)
+			if(tile instanceof IInventory)
 			{
 				RotHandler.rotInvo(event.entityPlayer.worldObj, (IInventory)tile);
 			}
@@ -1176,7 +1176,8 @@ public class EM_EventManager
 		
 		EnviroDataTracker tracker = EM_StatusManager.lookupTracker(event.entityLiving);
 		
-		if(tracker == null || tracker.isDisabled)
+		boolean trackerIsNull = tracker == null;
+		if(trackerIsNull || tracker.isDisabled)
 		{
 			if((!EnviroMine.proxy.isClient() || EnviroMine.proxy.isOpenToLAN()) && (EM_Settings.enableAirQ || EM_Settings.enableBodyTemp || EM_Settings.enableHydrate || EM_Settings.enableSanity))
 			{
@@ -1210,7 +1211,7 @@ public class EM_EventManager
 			IAttributeInstance attribute = event.entityLiving.getEntityAttribute(SharedMonsterAttributes.movementSpeed);
 			AttributeModifier mod = new AttributeModifier(EM_DEHY1_ID, "EM_Dehydrated", -0.25D, 2);
 			
-			if(mod != null && attribute.getModifier(mod.getID()) == null)
+			if(/*mod != null && */attribute.getModifier(mod.getID()) == null)
 			{
 				attribute.applyModifier(mod);
 			}
@@ -1234,7 +1235,7 @@ public class EM_EventManager
 			IAttributeInstance attribute = event.entityLiving.getEntityAttribute(SharedMonsterAttributes.movementSpeed);
 			AttributeModifier mod = new AttributeModifier(EM_HEAT1_ID, "EM_Heat", -0.25D, 2);
 			
-			if(mod != null && attribute.getModifier(mod.getID()) == null)
+			if(/*mod != null && */attribute.getModifier(mod.getID()) == null)
 			{
 				attribute.applyModifier(mod);
 			}
@@ -1274,7 +1275,7 @@ public class EM_EventManager
 					}
 				}
 			}
-			if(mod != null && attribute.getModifier(mod.getID()) == null)
+			if(/*mod != null && */attribute.getModifier(mod.getID()) == null)
 			{
 				attribute.applyModifier(mod);
 				
@@ -1309,17 +1310,17 @@ public class EM_EventManager
 				return;
 			}
 			
-			if(((EntityPlayer)event.entityLiving).isPlayerSleeping() && tracker != null && !event.entityLiving.worldObj.isDaytime())
+			if(((EntityPlayer)event.entityLiving).isPlayerSleeping() && !trackerIsNull && !event.entityLiving.worldObj.isDaytime())
 			{
 				tracker.sleepState = "Asleep";
 				tracker.lastSleepTime = (int)event.entityLiving.worldObj.getWorldInfo().getWorldTime() % 24000;
-			} else if(tracker != null && event.entityLiving.worldObj.isDaytime())
+			} else if(!trackerIsNull && event.entityLiving.worldObj.isDaytime())
 			{
 				int relitiveTime = (int)event.entityLiving.worldObj.getWorldInfo().getWorldTime() % 24000;
 				
 				if(tracker.sleepState.equals("Asleep") && tracker.lastSleepTime - relitiveTime > 100)
 				{
-					int timeSlept = MathHelper.floor_float(100*(12000 - (tracker.lastSleepTime - 12000))/12000);
+					int timeSlept = MathHelper.floor_float(100f*(12000f - (tracker.lastSleepTime - 12000f))/12000f);
 					
 					if(tracker.sanity + timeSlept > 100F)
 					{

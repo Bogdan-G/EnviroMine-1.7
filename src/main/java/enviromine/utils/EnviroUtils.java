@@ -301,8 +301,8 @@ public class EnviroUtils
 			oldNumStr = oldVer.split("\\.");
 			newNumStr = newVer.split("\\.");
 			
-			oldNum = new int[]{Integer.valueOf(oldNumStr[0]),Integer.valueOf(oldNumStr[1]),Integer.valueOf(oldNumStr[2])};
-			newNum = new int[]{Integer.valueOf(newNumStr[0]),Integer.valueOf(newNumStr[1]),Integer.valueOf(newNumStr[2])};
+			oldNum = new int[]{Integer.parseInt(oldNumStr[0]),Integer.parseInt(oldNumStr[1]),Integer.parseInt(oldNumStr[2])};
+			newNum = new int[]{Integer.parseInt(newNumStr[0]),Integer.parseInt(newNumStr[1]),Integer.parseInt(newNumStr[2])};
 		} catch(IndexOutOfBoundsException e)
 		{
 			EnviroMine.logger.log(Level.WARN, "An IndexOutOfBoundsException occured while checking version!", e);

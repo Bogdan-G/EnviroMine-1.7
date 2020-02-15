@@ -31,9 +31,9 @@ public class EM_ServerScheduledTickHandler
 			
 			Earthquake.updateEarthquakes();
 			
-			if(EM_Settings.enableQuakes && MathHelper.floor_double(tick.world.getTotalWorldTime()/24000L) != Earthquake.lastTickDay && tick.world.playerEntities.size() > 0)
+			if(EM_Settings.enableQuakes && MathHelper.floor_double(tick.world.getTotalWorldTime()/24000D) != Earthquake.lastTickDay && tick.world.playerEntities.size() > 0)
 			{
-				Earthquake.lastTickDay = MathHelper.floor_double(tick.world.getTotalWorldTime()/24000L);
+				Earthquake.lastTickDay = MathHelper.floor_double(tick.world.getTotalWorldTime()/24000D);
 				Earthquake.TickDay(tick.world);
 			}
 		}

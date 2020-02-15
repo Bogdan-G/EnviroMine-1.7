@@ -21,8 +21,8 @@ import enviromine.utils.EnviroUtils;
 
 public class RotProperties implements SerialisableProperty, PropertyBase
 {
-	public static final RotProperties base = new RotProperties();
 	static String[] RPName;
+	public static final RotProperties base = new RotProperties();
 	
 	public String name;
 	public int meta;
@@ -221,7 +221,7 @@ public class RotProperties implements SerialisableProperty, PropertyBase
 	@Override
 	public void generateEmpty(Configuration config, Object obj)
 	{
-		if(obj == null || !(obj instanceof Item))
+		if(!(obj instanceof Item))
 		{
 			EnviroMine.logger.log(Level.ERROR, "Tried to register config with non item object!", new Exception());
 			return;

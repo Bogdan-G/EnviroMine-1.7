@@ -15,8 +15,8 @@ import enviromine.utils.EnviroUtils;
 
 public class CaveSpawnProperties implements PropertyBase
 {
-	public static final CaveSpawnProperties base = new CaveSpawnProperties();
 	static String[] CGPNames;
+	public static final CaveSpawnProperties base = new CaveSpawnProperties();
 	
 	//Class<? extends EntityLiving> clazz;
 	public int id;
@@ -145,7 +145,7 @@ public class CaveSpawnProperties implements PropertyBase
 	@Override
 	public void generateEmpty(Configuration config, Object obj)
 	{
-		if(obj == null || !(obj instanceof Integer))
+		if(!(obj instanceof Integer))
 		{
 			EnviroMine.logger.log(Level.ERROR, "Tried to register config with non entity object!", new Exception());
 			return;

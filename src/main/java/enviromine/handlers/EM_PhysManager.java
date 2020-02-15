@@ -42,6 +42,8 @@ public class EM_PhysManager
 	public static int debugTime = 0;
 	public static int debugUpdatesCaptured = 0;
 	private static Stopwatch timer = Stopwatch.createUnstarted();
+	public static boolean Reduce = true;
+	public static int ReduceX=0, ReduceY=0, ReduceZ=0;
 	
 	public static long worldStartTime = -1;
 	
@@ -336,7 +338,7 @@ public class EM_PhysManager
 				isCustom = true;
 				defaultDrop = false;
 				
-				if(blockProps.dropName.equals(""))
+				if(blockProps.dropName.length()==0)
 				{
 					dropType = -1;
 					defaultDrop = true;
@@ -584,6 +586,13 @@ public class EM_PhysManager
 	{
 		int[] data = new int[]{0,0,0,0,0};
 		
+		if ((ReduceX < 0 && (x < 0 && (ReduceX + x > 10 || ReduceX + x < -10) || x > 0 && (-ReduceX + x > 10 || -ReduceX + x < -10)) || (x < 0 && (ReduceX + x > 10 || ReduceX + x < -10) || x > 0 && (ReduceX - x > 10 || ReduceX - x < -10))) || (ReduceY < 0 && (y < 0 && (ReduceY + y > 10 || ReduceY + y < -10) || y > 0 && (-ReduceY + y > 10 || -ReduceY + y < -10)) || (y < 0 && (ReduceY + y > 10 || ReduceY + y < -10) || y > 0 && (ReduceY - y > 10 || ReduceY - y < -10))) || (ReduceZ < 0 && (z < 0 && (ReduceZ + z > 10 || ReduceZ + z < -10) || z > 0 && (-ReduceZ + z > 10 || -ReduceZ + z < -10)) || (z < 0 && (ReduceZ + z > 10 || ReduceZ + z < -10) || z > 0 && (ReduceZ - z > 10 || ReduceZ - z < -10)))) {
+		ReduceX = x;
+		ReduceY = y;
+		ReduceZ = z;
+		Reduce = world.getEntitiesWithinAABB(EntityPhysicsBlock.class, AxisAlignedBB.getBoundingBox(x, y, z, x + 1, y + 1, z + 1)).size() > 0;
+		}
+		
 		for(int i = x - 1; i <= x + 1; i++)
 		{
 			for(int j = y - 1; j <= y + 1; j++)
@@ -639,15 +648,12 @@ public class EM_PhysManager
 						{
 							data[4] = 1;
 						}
-					} else if(stabType != null)
+					} else if(stabType != null && stabType.holdOther)
 					{
-						if(stabType != null && stabType.holdOther)
-						{
-							data[4] = 1;
-						}
+						data[4] = 1;
 					}
 					
-					if(world.getEntitiesWithinAABB(EntityPhysicsBlock.class, AxisAlignedBB.getBoundingBox(i, j, k, i + 1, j + 1, k + 1)).size() > 0)
+					if(EM_Settings.ReducegetEntitiesWithinAABB && Reduce || !EM_Settings.ReducegetEntitiesWithinAABB && world.getEntitiesWithinAABB(EntityPhysicsBlock.class, AxisAlignedBB.getBoundingBox(i, j, k, i + 1, j + 1, k + 1)).size() > 0)
 					{
 						if(j < y + 1)
 						{
@@ -1141,16 +1147,16 @@ public class EM_PhysManager
 			
 			slideDir = canSlideDir.get(world.rand.nextInt(canSlideDir.size()));
 			
-			if(slideDir == "X+")
+			if(slideDir.equals("X+"))
 			{
 				npos[0] = x + 1;
-			} else if(slideDir == "X-")
+			} else if(slideDir.equals("X-"))
 			{
 				npos[0] = x - 1;
-			} else if(slideDir == "Z+")
+			} else if(slideDir.equals("Z+"))
 			{
 				npos[2] = z + 1;
-			} else if(slideDir == "Z-")
+			} else if(slideDir.equals("Z-"))
 			{
 				npos[2] = z - 1;
 			}

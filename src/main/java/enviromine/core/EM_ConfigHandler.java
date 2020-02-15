@@ -275,6 +275,7 @@ public class EM_ConfigHandler
 		EM_Settings.chunkDelay = config.get(PhySetCat, "Chunk Physics Delay", EM_Settings.chunkDelay, "How long until individual chunk's physics starts after loading (DO NOT SET TOO LOW)").getInt(EM_Settings.chunkDelay);
 		EM_Settings.physInterval = EM_Settings.physInterval >= 2 ? EM_Settings.physInterval : 2;
 		EM_Settings.entityFailsafe = config.get(PhySetCat, "Physics entity fail safe level", EM_Settings.entityFailsafe, "0 = No action, 1 = Limit to < 100 per 8x8 block area, 2 = Delete excessive entities & Dump physics (EMERGENCY ONLY)").getInt(EM_Settings.entityFailsafe);
+		EM_Settings.ReducegetEntitiesWithinAABB = config.get(PhySetCat, "Reduce EntitiesWithinAABB", EM_Settings.entityFailsafe, "Reduce getEntitiesWithinAABB in getSurroundingBlockData in update physics").getBoolean(EM_Settings.ReducegetEntitiesWithinAABB);
 
 		//TODO Legacy Check
 		if(!LegacyHandler.getByKey("ConfigHandlerLegacy").didRun())
@@ -390,9 +391,16 @@ public class EM_ConfigHandler
 		EM_Settings.enableQuakes = config.get(EarSetCat, "Enable Earthquakes", EM_Settings.enableQuakes).getBoolean(EM_Settings.enableQuakes);
 		EM_Settings.quakePhysics = config.get(EarSetCat, "Triggers Physics", EM_Settings.quakePhysics, "Can cause major lag at times (Requires main physics to be enabled)").getBoolean(EM_Settings.quakePhysics);
 		EM_Settings.quakeRarity = config.get(EarSetCat, "Rarity", EM_Settings.quakeRarity).getInt(EM_Settings.quakeRarity);
+		EM_Settings.quakeMode = config.get(EarSetCat, "Mode", EM_Settings.quakeMode, "Changes how quakes are created (-1 = random, 0 = wave normal, 1 = centre normal, 2 = centre tear, 3 = wave tear)").getInt(EM_Settings.quakeMode);
+		EM_Settings.quakeDelay = config.get(EarSetCat, "Tick delay", EM_Settings.quakeDelay).getInt(EM_Settings.quakeDelay);
+		EM_Settings.quakeSpeed = config.get(EarSetCat, "Speed", EM_Settings.quakeSpeed, "How many layers of rock it can eat through at a time").getInt(EM_Settings.quakeSpeed);
 		if(EM_Settings.quakeRarity < 0)
 		{
 			EM_Settings.quakeRarity = 0;
+		}
+		if(EM_Settings.quakeSpeed <= 0)
+		{
+			EM_Settings.quakeSpeed = 1;
 		}
 		
 		// Easter Eggs!
@@ -467,7 +475,7 @@ public class EM_ConfigHandler
 		
 		String MacCheck = ".DS_Store.cfg";
 		
-		if (matcher.matches() && matcher.group(0).toString().toLowerCase() == MacCheck.toLowerCase()) { return false;}
+		if (matcher.matches() && matcher.group(0).toString().toLowerCase().equals(MacCheck.toLowerCase())) { return false;}
 		
 		return matcher.matches();
 	}
@@ -655,12 +663,7 @@ public class EM_ConfigHandler
 		try
 		{
 			config = new Configuration(configFile, true);
-		} catch(NullPointerException e)
-		{
-			e.printStackTrace();
-			EnviroMine.logger.log(Level.WARN, "FAILED TO LOAD Config from OBJECT TO "+ModID+".CFG");
-			return null;
-		} catch(StringIndexOutOfBoundsException e)
+		} catch(NullPointerException | StringIndexOutOfBoundsException e)
 		{
 			e.printStackTrace();
 			EnviroMine.logger.log(Level.WARN, "FAILED TO LOAD Config from OBJECT TO "+ModID+".CFG");
@@ -689,12 +692,7 @@ public class EM_ConfigHandler
 		try
 		{
 			config = new Configuration(configFile, true);
-		} catch(NullPointerException e)
-		{
-			e.printStackTrace();
-			EnviroMine.logger.log(Level.WARN, "FAILED TO SAVE NEW OBJECT TO "+ModID+".CFG");
-			return "Failed to Open "+ModID+".cfg";
-		} catch(StringIndexOutOfBoundsException e)
+		} catch(NullPointerException | StringIndexOutOfBoundsException e)
 		{
 			e.printStackTrace();
 			EnviroMine.logger.log(Level.WARN, "FAILED TO SAVE NEW OBJECT TO "+ModID+".CFG");

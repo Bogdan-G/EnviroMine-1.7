@@ -24,8 +24,8 @@ import enviromine.utils.ModIdentification;
 
 public class BiomeProperties implements SerialisableProperty, PropertyBase
 {
-	public static final BiomeProperties base = new BiomeProperties();
 	static String[] BOName;
+	public static final BiomeProperties base = new BiomeProperties();
 	
 	public int id;
 	public boolean biomeOveride;
@@ -225,7 +225,7 @@ public class BiomeProperties implements SerialisableProperty, PropertyBase
 	@Override
 	public void generateEmpty(Configuration config, Object obj)
 	{
-		if(obj == null || !(obj instanceof BiomeGenBase))
+		if(!(obj instanceof BiomeGenBase))
 		{
 			EnviroMine.logger.log(Level.ERROR, "Tried to register config with non biome object!", new Exception());
 			return;

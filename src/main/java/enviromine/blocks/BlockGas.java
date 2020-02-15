@@ -86,7 +86,7 @@ public class BlockGas extends Block implements ITileEntityProvider
 	{
 		TileEntity tile = world.getTileEntity(i, j, k);
 		
-		if(tile != null && tile instanceof TileEntityGas)
+		if(tile instanceof TileEntityGas)
 		{
 			TileEntityGas gasTile = (TileEntityGas)tile;
 			
@@ -110,7 +110,7 @@ public class BlockGas extends Block implements ITileEntityProvider
 	{
 		TileEntity tile = blockAccess.getTileEntity(i, j, k);
 		
-		if(tile != null && tile instanceof TileEntityGas)
+		if(tile instanceof TileEntityGas)
 		{
 			TileEntityGas gasTile = (TileEntityGas)tile;
 			return gasTile.color.getRGB();
@@ -129,7 +129,7 @@ public class BlockGas extends Block implements ITileEntityProvider
 		{
 			TileEntity tile = blockAccess.getTileEntity(i, j, k);
 			
-			if(tile != null && tile instanceof TileEntityGas)
+			if(tile instanceof TileEntityGas)
 			{
 				float maxOpacity = ((TileEntityGas)tile).opacity;
 				return maxOpacity;
@@ -443,7 +443,7 @@ public class BlockGas extends Block implements ITileEntityProvider
 			{
 				TileEntity tile = world.getTileEntity(x + pos[0], y + pos[1], z + pos[2]);
 				
-				if(tile != null && tile instanceof TileEntityGas)
+				if(tile instanceof TileEntityGas)
 				{
 					TileEntityGas gasTile = (TileEntityGas)tile;
 					
@@ -467,7 +467,7 @@ public class BlockGas extends Block implements ITileEntityProvider
 		{
 			TileEntity tile = world.getTileEntity(x, y, z);
 			
-			if(tile != null && tile instanceof TileEntityGas)
+			if(tile instanceof TileEntityGas)
 			{
 				TileEntityGas gasTile = (TileEntityGas)tile;
 				
@@ -613,7 +613,7 @@ public class BlockGas extends Block implements ITileEntityProvider
 			
 			TileEntity tile = world.getTileEntity(x + pos[0], y + pos[1], z + pos[2]);
 			
-			if(tile != null && tile instanceof TileEntityGas)
+			if(tile instanceof TileEntityGas)
 			{
 				TileEntityGas gasTile = (TileEntityGas)tile;
 				
@@ -633,7 +633,7 @@ public class BlockGas extends Block implements ITileEntityProvider
     {
     	TileEntity tile = world.getTileEntity(i, j, k);
 		
-		if(tile != null && tile instanceof TileEntityGas)
+		if(tile instanceof TileEntityGas)
 		{
 			TileEntityGas gasTile = (TileEntityGas)tile;
 			return gasTile.gases;
@@ -658,8 +658,8 @@ public class BlockGas extends Block implements ITileEntityProvider
 	        double d1 = (double)((float)j + 0.5F);
 	        double d2 = (double)((float)k + 0.5F);
 	        
-	        double d3 = rand.nextDouble() - 0.5D;
-	        double d4 = rand.nextDouble() - 0.5D;
+	        double d3 = rand.nextFloat() - 0.5D;
+	        double d4 = rand.nextFloat() - 0.5D;
 	        
 	        world.spawnParticle("largesmoke", d0 + d3, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
 	        world.spawnParticle("flame", d0 + d3, d1, d2 + d4, 0.0D, 0.0D, 0.0D);
@@ -670,7 +670,7 @@ public class BlockGas extends Block implements ITileEntityProvider
 	{
 		TileEntity tile = blockAccess.getTileEntity(i, j, k);
 		
-		if(tile != null && tile instanceof TileEntityGas)
+		if(tile instanceof TileEntityGas)
 		{
 			TileEntityGas gasTile = (TileEntityGas)tile;
 			return (double)gasTile.yMin;

@@ -15,12 +15,15 @@ public class ClientQuake extends Earthquake
 {
 	int dimensionID;
 	long duration;
+	long time;
 	
 	public ClientQuake(int d, int i, int k, int l, int w, float a)
 	{
-		super(null, i, k, l, w, a, false);
+		super(null, i, k, l, w, 0, a, false);
 		clientQuakes.add(this);
-		duration = Minecraft.getMinecraft().theWorld.getTotalWorldTime();
+		duration = 6000L;
+		time = Minecraft.getMinecraft().theWorld.getTotalWorldTime();
+		
 	}
 	
 	public static void UpdateQuakeHeight(int d, int x, int z, int l, int w, float a, int height)
@@ -32,9 +35,10 @@ public class ClientQuake extends Earthquake
 			if(quake.posX == x && quake.posZ == z)
 			{
 				Minecraft mc = Minecraft.getMinecraft();
-				mc.getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("enviromine:earthquake"), new Random().nextFloat() * 0.25F + 0.75F));
+				mc.getSoundHandler().playSound(PositionedSoundRecord.func_147674_a(new ResourceLocation("enviromine:earthquake"), new org.bogdang.modifications.random.XSTR().nextFloat() * 0.25F + 0.75F));
 				quake.passY = height;
-				quake.duration = Minecraft.getMinecraft().theWorld.getTotalWorldTime();
+				quake.duration = 6000L;
+				quake.time = mc.theWorld.getTotalWorldTime();
 				return;
 			}
 		}
@@ -80,10 +84,11 @@ public class ClientQuake extends Earthquake
 					dist = dist < 0? 0 : dist;
 				}
 				
-				if(entity.getDistance(quake.posX, quake.passY, quake.posZ) > 256 + size || Minecraft.getMinecraft().theWorld.getWorldTime() - quake.duration > 3000L)
+				if(entity.getDistance(quake.posX, quake.passY, quake.posZ) > 256 + size || Minecraft.getMinecraft().theWorld.getWorldTime() - quake.time > 3000L || quake.duration==0)
 				{
 					clientQuakes.remove(i);
 				}
+				quake.duration--;
 			}
 		}
 		

@@ -25,7 +25,7 @@ import java.util.Random;
 
 public class BlockEsky extends BlockContainer implements ITileEntityProvider
 {
-	private final Random field_149955_b = new Random();
+	private final Random field_149955_b = new org.bogdang.modifications.random.XSTR();
 	
 	public BlockEsky(Material material)
 	{

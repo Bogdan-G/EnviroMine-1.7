@@ -135,7 +135,7 @@ public class RenderGasHandler implements ISimpleBlockRenderingHandler
 				sideMinY = ((BlockGas)sideBlock).getMinY(blockAccess, i, j, k - 1);
 				sideMaxY = ((BlockGas)sideBlock).getMaxY(blockAccess, i, j, k - 1);
 				
-				if((minY <= sideMinY & minY <= sideMaxY & maxY <= sideMinY & maxY <= sideMinY) | (minY >= sideMinY & minY >= sideMaxY & maxY >= sideMinY & maxY >= sideMinY))
+				if((minY <= sideMinY && minY <= sideMaxY && maxY <= sideMinY && maxY <= sideMinY) || (minY >= sideMinY && minY >= sideMaxY && maxY >= sideMinY && maxY >= sideMinY))
 				{
 					vertexAutoMap(minX, minY, minZ, maxX, minY);
 					vertexAutoMap(minX, maxY, minZ, maxX, maxY);

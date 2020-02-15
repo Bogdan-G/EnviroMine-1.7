@@ -552,43 +552,7 @@ public class EnviroDataTracker
 			return EntityProperties.base.getProperty(entity).shouldTrack;
 		}
 		
-		if(entity.isEntityUndead() || entity instanceof EntityMob)
-		{
-			return false;
-		} else if(name == "Enderman")
-		{
-			return false;
-		} else if(name == "Villager")
-		{
-			return false;
-		} else if(name == "Slime")
-		{
-			return false;
-		} else if(name == "Ghast")
-		{
-			return false;
-		} else if(name == "Squid")
-		{
-			return false;
-		} else if(name == "Blaze")
-		{
-			return false;
-		} else if(name == "LavaSlime")
-		{
-			return false;
-		} else if(name == "SnowMan")
-		{
-			return false;
-		} else if(name == "MushroomCow")
-		{
-			return false;
-		} else if(name == "WitherBoss")
-		{
-			return false;
-		} else if(name == "EnderDragon")
-		{
-			return false;
-		} else if(name == "VillagerGolem")
+		if(entity.isEntityUndead() || entity instanceof EntityMob || name != null && (name.equals("Enderman") || name.equals("Villager") || name.equals("Slime") || name.equals("Ghast") || name.equals("Squid") || name.equals("Blaze") || name.equals("LavaSlime") || name.equals("SnowMan") || name.equals("MushroomCow") || name.equals("WitherBoss") || name.equals("EnderDragon") || name.equals("VillagerGolem")))
 		{
 			return false;
 		} else

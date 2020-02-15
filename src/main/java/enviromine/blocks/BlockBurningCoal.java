@@ -105,7 +105,7 @@ public class BlockBurningCoal extends Block implements ITileEntityProvider
         		}
         		TileEntity tile = world.getTileEntity(xOff, yOff, zOff);
         		
-        		if(tile != null && tile instanceof TileEntityGas)
+        		if(tile instanceof TileEntityGas)
         		{
         			TileEntityGas gasTile = (TileEntityGas)tile;
         			
@@ -181,7 +181,7 @@ public class BlockBurningCoal extends Block implements ITileEntityProvider
     	world.setBlock(x, y, z, Blocks.fire);
 		/*TileEntity tile = world.getTileEntity(x, y, z);
 		
-		if(tile != null && tile instanceof TileEntityGas)
+		if(tile instanceof TileEntityGas)
 		{
 			TileEntityGas gasTile = (TileEntityGas)tile;
 			gasTile.addGas(0, 10); // Fire

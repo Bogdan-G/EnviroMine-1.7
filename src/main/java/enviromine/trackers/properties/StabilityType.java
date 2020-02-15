@@ -12,8 +12,8 @@ import enviromine.trackers.properties.helpers.PropertyBase;
 
 public class StabilityType implements PropertyBase
 {
-	public static final StabilityType base = new StabilityType();
 	static String[] SPName;
+	public static final StabilityType base = new StabilityType();
 	
 	public String name;
 	public boolean enablePhysics;
@@ -163,7 +163,7 @@ public class StabilityType implements PropertyBase
 	@Override
 	public void generateEmpty(Configuration config, Object obj)
 	{
-		if(obj == null || !(obj instanceof String))
+		if(!(obj instanceof String))
 		{
 			EnviroMine.logger.log(Level.ERROR, "Tried to register config with non string object!", new Exception());
 			return;

@@ -31,10 +31,10 @@ public class MineshaftBuilder
 	/* All mines are designed in a 1024x1024 block grid where 9 grid positions (3x3 centered on last generated chunk)
 	 * are scanned for valid mine placements. No mine should generated more than 1024 in length or width.
 	 * 
-	 * Use 'new Random(world.rand.getSeed()).setSeed((long)chunkX * 341873128712L + (long)chunkZ * 132897987541L)' to ensure every time a seed is used
+	 * Use 'new org.bogdang.modifications.random.XSTR(world.rand.getSeed()).setSeed((long)chunkX * 341873128712L + (long)chunkZ * 132897987541L)' to ensure every time a seed is used
 	 * the same mine is generated in the same place.
 	 * 
-	 * A chunk is a valid placement for a mine if(new Random(world.rand.getSeed()).setSeed((long)chunkX * 341873128712L + (long)chunkZ * 132897987541L).nextInt(100) == 0)
+	 * A chunk is a valid placement for a mine if(new org.bogdang.modifications.random.XSTR(world.rand.getSeed()).setSeed((long)chunkX * 341873128712L + (long)chunkZ * 132897987541L).nextInt(100) == 0)
 	 * and the chunk's ground level is above Y:48. Any mines above Y:80 will require a valid drift mine entrance.
 	 * Mine's can only generate on every 8th chunk. This is to keep scanning to a minimum and the mine's spread out.
 	 * The chunk generate event can then trigger any valid segments inside the HashMap to be built.
@@ -122,7 +122,7 @@ public class MineshaftBuilder
 								tmpBuilder.decayAmount = random.nextInt(10);
 								tmpBuilder.setRandom(random);
 								//if(world.provider.dimensionId == 0)
-								{
+								//{
 									if(tmpBuilder.BuildAbandonedMine())
 									{
 										pendingBuilders.add(tmpBuilder);
@@ -133,8 +133,8 @@ public class MineshaftBuilder
 											foundBuilders += 1;
 										}
 									}
-								} /*else if(world.provider.dimensionId == EM_Settings.caveDimID)
-								{
+								//} else if(world.provider.dimensionId == EM_Settings.caveDimID)
+								/*{
 									if(tmpBuilder.startCaveDesign())
 									{
 										pendingBuilders.add(tmpBuilder);
@@ -193,7 +193,8 @@ public class MineshaftBuilder
 					segmentMap.put("" + chunkX + "," + chunkZ, chunkSegments);
 				} else
 				{
-					segmentMap.remove(segmentMap.get("" + chunkX + "," + chunkZ));
+					//wut? do delete the key for the object? as? the method HashMap.remove(Object key) takes a key, not object. fix.
+					segmentMap.remove("" + chunkX + "," + chunkZ);
 				}
 			}
 			
@@ -217,7 +218,7 @@ public class MineshaftBuilder
 			
 			if(chunkSegments == null || chunkSegments.size() <= 0)
 			{
-				segmentMap.remove(i);
+				segmentMap.remove(keys[i]);
 				continue;
 			}
 				for(int j = chunkSegments.size() - 1; j >= 0; j--)
@@ -244,7 +245,7 @@ public class MineshaftBuilder
 			
 			if(chunkSegments.size() <= 0)
 			{
-				segmentMap.remove(i);
+				segmentMap.remove(keys[i]);
 			}
 		}
 		

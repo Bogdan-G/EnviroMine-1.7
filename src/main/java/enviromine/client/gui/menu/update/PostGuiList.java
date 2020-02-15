@@ -401,57 +401,24 @@ public class PostGuiList extends GuiListExtended
 	
 	public static int textTypeColor(textType type)
 	{
-		switch(type)
-		{
-			case TITLE:
-				return RenderAssist.getColorFromRGBA(21, 153, 21, 255);
-				
-			case DATE:
-				return RenderAssist.getColorFromRGBA(71, 134, 186, 255);
-				
-			case CREATOR:
-				return RenderAssist.getColorFromRGBA(53, 219, 161, 255);
-				
-			case HR:
-				return RenderAssist.getColorFromRGBA(71, 134, 186, 255);
-				
-			case VERSION:
-				return RenderAssist.getColorFromRGBA(255, 251, 0, 255);
-				
-			case HEADER:
-				return RenderAssist.getColorFromRGBA(110, 129, 255, 255);
-				
-			case ADD:
-				return RenderAssist.getColorFromRGBA(0, 255, 0, 255);
-				
-			case REMOVED:
-				return RenderAssist.getColorFromRGBA(255, 0, 0, 255);
-				
-			case CHANGED:
-				return RenderAssist.getColorFromRGBA(255, 98, 0, 255);
-				
-			default:
-				return 16777215;
-				
-		}
+		if (type == textType.TITLE) return RenderAssist.getColorFromRGBA(21, 153, 21, 255);
+		else if (type == textType.DATE || type == textType.HR) return RenderAssist.getColorFromRGBA(71, 134, 186, 255);
+		else if (type == textType.CREATOR) return RenderAssist.getColorFromRGBA(53, 219, 161, 255);
+		else if (type == textType.VERSION) return RenderAssist.getColorFromRGBA(255, 251, 0, 255);
+		else if (type == textType.HEADER) return RenderAssist.getColorFromRGBA(110, 129, 255, 255);
+		else if (type == textType.ADD) return RenderAssist.getColorFromRGBA(0, 255, 0, 255);
+		else if (type == textType.REMOVED) return RenderAssist.getColorFromRGBA(255, 0, 0, 255);
+		else if (type == textType.CHANGED) return RenderAssist.getColorFromRGBA(255, 98, 0, 255);
+		else return 16777215;
 	}
 	
 	public static String textTypeText(textType type, String line)
 	{
-		switch(type)
-		{
-			case TITLE:
+		if (type == textType.TITLE) {
 				line = line.toUpperCase();
-				break;
-			
-			case HR:
+		} else if (type == textType.HR) {
 				String hr = "---------------------------------------------------------------------------------------";
 				line = Minecraft.getMinecraft().fontRenderer.trimStringToWidth(hr, 300);
-				break;
-			
-			default:
-				break;
-		
 		}
 		
 		return line;

@@ -32,13 +32,13 @@ public class HandlingTheThing
 			flag = true;
 		}
 		
-		if(player == null || !player.isEntityAlive() || !flag || player.dimension != EM_Settings.caveDimID || player.worldObj.difficultySetting == EnumDifficulty.PEACEFUL)
+		if(/*player == null || */!player.isEntityAlive() || !flag || player.dimension != EM_Settings.caveDimID || player.worldObj.difficultySetting == EnumDifficulty.PEACEFUL)
 		{
-			if(player != null && player.getEntityData() != null)
-			{
+			//if(player != null && player.getEntityData() != null)
+			//{
 				player.getEntityData().setBoolean("EM_THING_TARGET", false);
 				player.getEntityData().setInteger("EM_THING", 0);
-			}
+			//}
 			return;
 		}
 		

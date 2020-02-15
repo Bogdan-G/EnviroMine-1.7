@@ -25,7 +25,7 @@ import net.minecraft.world.World;
 
 public class BlockFreezer extends BlockContainer implements ITileEntityProvider
 {
-    private final Random field_149955_b = new Random();
+    private final Random field_149955_b = new org.bogdang.modifications.random.XSTR();
     
 	public BlockFreezer(Material material)
 	{

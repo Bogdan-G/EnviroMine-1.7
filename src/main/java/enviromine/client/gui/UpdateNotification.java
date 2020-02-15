@@ -26,8 +26,8 @@ import enviromine.utils.EnviroUtils;
 public class UpdateNotification
 {
 	boolean hasChecked = false;
-	public static String version;
-	public static String lastSeen;
+	public static String version = "";
+	public static String lastSeen = "";
 	
 	@SubscribeEvent
 	public void onPlayerLogin(PlayerEvent.PlayerLoggedInEvent event)
@@ -91,7 +91,7 @@ public class UpdateNotification
 	@SuppressWarnings("unused")
 	private void displayUpdateCheck(PlayerLoggedInEvent event)
 	{
-		
+		//Bogdan-G: links 404
 		// File link: http://bit.ly/1r4JJt3;
 		// DO NOT CHANGE THIS!
 		if(EM_Settings.Version == "FWG_" + "EM" + "_VER")
@@ -102,16 +102,16 @@ public class UpdateNotification
 		
 		try
 		{
+			if(!EM_Settings.updateCheck)
+			{
+				return;
+			}
+			
 			String page = getUrl("http://bit.ly/1pwDr2o", true);
 			String[] data = page.split("\\n");
 			
 			String[] rawVer = data[0].trim().split("\\.");
 			version = rawVer[0] + "." + rawVer[1] + "." + rawVer[2];
-			
-			if(!EM_Settings.updateCheck)
-			{
-				return;
-			}
 			
 			//Debug stuff that shouldn't be printed to the user's chat window!
 			/*for(int i = 0; i < data.length; i++)
@@ -172,13 +172,13 @@ public class UpdateNotification
 		HttpURLConnection.setFollowRedirects(false);
 		HttpURLConnection con = (HttpURLConnection)url.openConnection();
 		con.setDoOutput(false);
-		con.setReadTimeout(20000);
+		con.setReadTimeout(10000);//20000 -> 10000
 		con.setRequestProperty("Connection", "keep-alive");
 		
 		con.setRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:16.0) Gecko/20100101 Firefox/16.0");
 		((HttpURLConnection)con).setRequestMethod("GET");
-		con.setConnectTimeout(5000);
-		BufferedInputStream in = new BufferedInputStream(con.getInputStream());
+		con.setConnectTimeout(2500);//5000 -> 2500
+		try(BufferedInputStream in = new BufferedInputStream(con.getInputStream())) {
 		int responseCode = con.getResponseCode();
 		if(responseCode != HttpURLConnection.HTTP_OK && responseCode != HttpURLConnection.HTTP_MOVED_PERM)
 		{
@@ -199,7 +199,7 @@ public class UpdateNotification
 				throw new IOException();
 			}
 		}
-		StringBuffer buffer = new StringBuffer();
+		StringBuilder buffer = new StringBuilder();//StringBuffer? -> StringBuilder
 		int chars_read;
 		//	int total = 0;
 		while((chars_read = in.read()) != -1)
@@ -210,6 +210,7 @@ public class UpdateNotification
 		final String page = buffer.toString();
 		
 		return page;
+		}
 	}
 
 	

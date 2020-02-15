@@ -25,8 +25,8 @@ import enviromine.utils.EnviroUtils;
 
 public class BlockProperties implements SerialisableProperty, PropertyBase
 {
-	public static final BlockProperties base = new BlockProperties();
 	static String[] BPName;
+	public static final BlockProperties base = new BlockProperties();
 	
 	public boolean hasPhys;
 	
@@ -486,7 +486,7 @@ public class BlockProperties implements SerialisableProperty, PropertyBase
 	@Override
 	public void generateEmpty(Configuration config, Object obj)
 	{
-		if(obj == null || !(obj instanceof Block))
+		if(!(obj instanceof Block))
 		{
 			EnviroMine.logger.log(Level.ERROR, "Tried to register config with non block object!", new Exception());
 			return;

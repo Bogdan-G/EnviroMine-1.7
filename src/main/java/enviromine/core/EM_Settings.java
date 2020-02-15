@@ -21,7 +21,7 @@ public class EM_Settings
 	public static File worldDir = null;
 	
 	//Mod Data
-	public static final String Version = "FWG_EM_VER";
+	public static final String Version = "1.3.124";
 	public static final String ModID = "enviromine";
 	public static final String Channel = "EM_CH";
 	public static final String Name = "EnviroMine";
@@ -162,6 +162,9 @@ public class EM_Settings
 	public static boolean enableQuakes = true;
 	public static boolean quakePhysics = true;
 	public static int quakeRarity = 100;
+	public static int quakeDelay = 10;
+	public static int quakeMode = 2;
+	public static int quakeSpeed = 2;
 	
 	public static boolean finiteWater = false;
 	public static float thingChance = 0.000001F;
@@ -171,6 +174,8 @@ public class EM_Settings
 	
 	
 	public static boolean voxelMenuExists = false;
+	
+	public static boolean ReducegetEntitiesWithinAABB = false;
 	
 	/**
 	 * Tells the server that this field should be sent to the client to overwrite<br>

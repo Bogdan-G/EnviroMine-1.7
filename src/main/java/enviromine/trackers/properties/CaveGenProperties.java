@@ -17,8 +17,8 @@ import enviromine.utils.EnviroUtils;
 
 public class CaveGenProperties implements PropertyBase
 {
-	public static final CaveGenProperties base = new CaveGenProperties();
 	static String[] CGPNames;
+	public static final CaveGenProperties base = new CaveGenProperties();
 	
 	public Block ore;
 	public int oreMeta;
@@ -244,7 +244,7 @@ public class CaveGenProperties implements PropertyBase
 	@Override
 	public void generateEmpty(Configuration config, Object obj)
 	{
-		if(obj == null || !(obj instanceof Block))
+		if(!(obj instanceof Block))
 		{
 			EnviroMine.logger.log(Level.ERROR, "Tried to register config with non block object!", new Exception());
 			return;

@@ -140,6 +140,15 @@ public class EnviroMine
 	@EventHandler
 	public void serverStart(FMLServerStartingEvent event)
 	{
+		EnviroMine.logger.log(Level.INFO, "gasTickRate " + EM_Settings.gasTickRate);
+		EnviroMine.logger.log(Level.INFO, "gasPassLimit " + EM_Settings.gasPassLimit);
+		EnviroMine.logger.log(Level.INFO, "updateCap " + EM_Settings.updateCap);
+		EnviroMine.logger.log(Level.INFO, "physInterval " + EM_Settings.physInterval);
+		EnviroMine.logger.log(Level.INFO, "worldDelay " + EM_Settings.worldDelay);
+		EnviroMine.logger.log(Level.INFO, "chunkDelay " + EM_Settings.chunkDelay);
+		EnviroMine.logger.log(Level.INFO, "entityFailsafe " + EM_Settings.entityFailsafe);
+		EnviroMine.logger.log(Level.INFO, "quakeRarity " + EM_Settings.quakeRarity);
+		
 		MinecraftServer server = MinecraftServer.getServer();
 		ICommandManager command = server.getCommandManager();
 		ServerCommandManager manager = (ServerCommandManager) command;

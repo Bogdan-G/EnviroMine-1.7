@@ -42,12 +42,12 @@ public class Hallucination
 		
 		Random rand = entityLiving.getRNG();
 		
-		if (rand.nextInt(10) == 0 || true) {
+		//if (rand.nextInt(10) == 0 || true) {
 			this.overriding = this.findPlayer(entityLiving);
 			if (this.overriding != null) {
 				this.type = Type.OVERRIDE;
 			}
-		}
+		//}
 		
 		x = (int)(this.type == Type.NORMAL ? (entityLiving.posX + rand.nextInt(20) - 10) : this.overriding.posX);
 		y = (int)(this.type == Type.NORMAL ? (entityLiving.posY + rand.nextInt(2) - 1) : this.overriding.posY);
@@ -92,11 +92,13 @@ public class Hallucination
 			players.put(entityLiving.getCommandSenderName(), this);
 		}
 		
-		if(falseEntity.worldObj.isRemote && falseEntity instanceof EntityLiving)
+		//variable falseEntity already declared as EntityLiving
+		if(falseEntity.worldObj.isRemote/* && falseEntity instanceof EntityLiving*/)
 		{
 			//Minecraft.getMinecraft().sndManager.playSound(falseSound, x, y, z, 1.0F, 1.0F);
 			falseEntity.getEntityData().setBoolean("EM_Hallucination", true);
-			((EntityLiving)falseEntity).playLivingSound();
+			//((EntityLiving)falseEntity).playLivingSound();
+			falseEntity.playLivingSound();
 		}
 	}
 	
@@ -135,10 +137,11 @@ public class Hallucination
 	}
 	
 	public void finish() {
-		switch (this.type) {
-			case OVERRIDE:
+		if (this.type == Type.OVERRIDE) {
 				players.remove(this.overriding.getCommandSenderName());
-			case NORMAL:
+				this.falseEntity.setDead();
+				list.remove(this);
+		} else if (this.type == Type.NORMAL) {
 				this.falseEntity.setDead();
 				list.remove(this);
 		}

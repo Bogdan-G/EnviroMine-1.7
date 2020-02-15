@@ -239,21 +239,14 @@ public class EntityPhysicsBlock extends EntityFallingBlock implements IEntityAdd
 						{
 							this.setDead();
 							return;
-						} else if(this.worldObj.getBlock(i, jj, k).getMaterial() == Material.lava)
+						} else {
+						Block block = this.worldObj.getBlock(i, jj, k);
+						Material material = block.getMaterial();
+						if(material == Material.lava || material == Material.water || ((block == Blocks.obsidian || block == Blocks.cobblestone) && this.worldObj.getBlock(i, jj - 1, k).getMaterial() == Material.lava))
 						{
 							this.setDead();
 							return;
-						} else if(this.worldObj.getBlock(i, jj, k).getMaterial() == Material.water)
-						{
-							this.setDead();
-							return;
-						} else if(this.worldObj.getBlock(i, jj, k) == Blocks.obsidian || this.worldObj.getBlock(i, jj, k) == Blocks.cobblestone)
-						{
-							if(this.worldObj.getBlock(i, jj - 1, k).getMaterial() == Material.lava)
-							{
-								this.setDead();
-								return;
-							}
+						}
 						}
 					}
 				}
@@ -264,7 +257,8 @@ public class EntityPhysicsBlock extends EntityFallingBlock implements IEntityAdd
 					this.motionZ *= 0.699999988079071D;
 					this.motionY *= -0.5D;
 					
-					if(this.worldObj.getBlock(i, j, k) != Blocks.piston_extension)
+					Block block = this.worldObj.getBlock(i, j, k);
+					if(block != Blocks.piston_extension)
 					{
 						this.setDead();
 						
@@ -273,9 +267,9 @@ public class EntityPhysicsBlock extends EntityFallingBlock implements IEntityAdd
 							j += 1;
 						}
 						
-						if((this.block == Blocks.snow_layer && this.worldObj.getBlock(i, j, k) == Blocks.snow_layer && this.worldObj.getBlockMetadata(i, j, k) < 15) || (!this.isBreakingAnvil2 && this.worldObj.canPlaceEntityOnSide(Blocks.anvil, i, j, k, true, 1, (Entity)null, (ItemStack)null) && !BlockFalling.func_149831_e(this.worldObj, i, j - 1, k) && this.worldObj.setBlock(i, j, k, this.block, this.meta, 3)))
+						if((this.block == Blocks.snow_layer && block == Blocks.snow_layer && this.worldObj.getBlockMetadata(i, j, k) < 15) || (!this.isBreakingAnvil2 && this.worldObj.canPlaceEntityOnSide(Blocks.anvil, i, j, k, true, 1, (Entity)null, (ItemStack)null) && !BlockFalling.func_149831_e(this.worldObj, i, j - 1, k) && this.worldObj.setBlock(i, j, k, this.block, this.meta, 3)))
 						{
-							if(this.block == Blocks.snow_layer && this.worldObj.getBlock(i, j, k) == Blocks.snow_layer && this.worldObj.getBlockMetadata(i, j, k) < 15)
+							if(this.block == Blocks.snow_layer && block == Blocks.snow_layer && this.worldObj.getBlockMetadata(i, j, k) < 15)
 							{
 								if(this.worldObj.getBlockMetadata(i, j, k) >= 14)
 								{
@@ -297,9 +291,10 @@ public class EntityPhysicsBlock extends EntityFallingBlock implements IEntityAdd
 							}*/
 							
 							Block bSurface = null;
-							if(this.worldObj.getBlock(i, j - 1, k) != Blocks.air && this.worldObj.getBlock(i, j - 1, k).getMaterial() != Material.air)
+							Block block0 = this.worldObj.getBlock(i, j - 1, k);
+							if(block0 != Blocks.air && block0.getMaterial() != Material.air)
 							{
-								bSurface = this.worldObj.getBlock(i, j -1 , k);
+								bSurface = block0;
 								this.worldObj.playSoundEffect((double)((float)i + 0.5F), (double)((float)j + 0.5F), (double)((float)k + 0.5F), bSurface.stepSound.func_150496_b(), (bSurface.stepSound.getVolume() + 1.0F) / 2.0F, bSurface.stepSound.getPitch() * 0.5F);
 							}
 							

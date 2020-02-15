@@ -338,7 +338,7 @@ public class TileEntityFreezer extends TileEntity implements IInventory
             NBTTagCompound nbttagcompound1 = nbttaglist.getCompoundTagAt(i);
             int j = nbttagcompound1.getByte("Slot") & 255;
 
-            if (j >= 0 && j < this.items.length)
+            if (/*j >= 0 && */j < this.items.length)
             {
                 this.items[j] = ItemStack.loadItemStackFromNBT(nbttagcompound1);
             }

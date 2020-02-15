@@ -68,7 +68,7 @@ public class ChunkProviderCaves implements IChunkProvider
 	public ChunkProviderCaves(World p_i2005_1_, long p_i2005_2_)
 	{
 		this.worldObj = p_i2005_1_;
-		this.hellRNG = new Random(p_i2005_2_);
+		this.hellRNG = new org.bogdang.modifications.random.XSTR(p_i2005_2_);
 		this.netherNoiseGen1 = new NoiseGeneratorOctaves(this.hellRNG, 16);
 		this.netherNoiseGen2 = new NoiseGeneratorOctaves(this.hellRNG, 16);
 		this.netherNoiseGen3 = new NoiseGeneratorOctaves(this.hellRNG, 16); // Normally 8
@@ -187,9 +187,9 @@ public class ChunkProviderCaves implements IChunkProvider
 		{
 			for(int l = 0; l < 16; ++l)
 			{
-				boolean flag = this.slowsandNoise[k + l * 16] + this.hellRNG.nextDouble() * 0.2D > 0.0D;
-				boolean flag1 = this.gravelNoise[k + l * 16] + this.hellRNG.nextDouble() * 0.2D > 0.0D;
-				int i1 = (int)(this.netherrackExclusivityNoise[k + l * 16] / 3.0D + 3.0D + this.hellRNG.nextDouble() * 0.25D);
+				boolean flag = this.slowsandNoise[k + l * 16] + this.hellRNG.nextFloat() * 0.2D > 0.0D;
+				boolean flag1 = this.gravelNoise[k + l * 16] + this.hellRNG.nextFloat() * 0.2D > 0.0D;
+				int i1 = (int)(this.netherrackExclusivityNoise[k + l * 16] / 3.0D + 3.0D + this.hellRNG.nextFloat() * 0.25D);
 				int j1 = -1;
 				Block block = Blocks.stone;
 				Block block1 = Blocks.stone;

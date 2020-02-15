@@ -55,7 +55,7 @@ public class BlockFlammableCoal extends BlockOre
         return 1;
     }
 
-    private Random rand = new Random();
+    private Random rand = new org.bogdang.modifications.random.XSTR();
     @Override
     public int getExpDrop(IBlockAccess p_149690_1_, int p_149690_5_, int p_149690_7_)
     {
@@ -82,7 +82,7 @@ public class BlockFlammableCoal extends BlockOre
     		world.setBlock(i, j, k, ObjectHandler.gasBlock);
     		TileEntity tile = world.getTileEntity(i, j, k);
     		
-    		if(tile != null && tile instanceof TileEntityGas)
+    		if(tile instanceof TileEntityGas)
     		{
     			TileEntityGas gasTile = (TileEntityGas)tile;
     			gasTile.addGas(EnviroGasDictionary.carbonDioxide.gasID, 1 + world.rand.nextInt(5));

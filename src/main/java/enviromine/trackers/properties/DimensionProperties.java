@@ -20,8 +20,8 @@ import enviromine.utils.ModIdentification;
 
 public class DimensionProperties implements SerialisableProperty, PropertyBase
 {
-	public static final DimensionProperties base = new DimensionProperties();
 	static String[] DMName;
+	public static final DimensionProperties base = new DimensionProperties();
 	
 	public int id;
 	public boolean override;
@@ -333,7 +333,7 @@ public class DimensionProperties implements SerialisableProperty, PropertyBase
 	@Override
 	public void generateEmpty(Configuration config, Object obj)
 	{
-		if(obj == null || !(obj instanceof WorldProvider))
+		if(!(obj instanceof WorldProvider))
 		{
 			EnviroMine.logger.log(Level.ERROR, "Tried to register config with non WorldProvider object!", new Exception());
 			return;
@@ -400,6 +400,6 @@ public class DimensionProperties implements SerialisableProperty, PropertyBase
 		DMName[17] = "18.Base Hydration Rate";
 		DMName[18] = "19.Base Sanity Rate";
 		DMName[19] = "20.Base Air Quality Rate";
-		DMName[20] = "20.Enable Physics";
+		DMName[20] = "21.Enable Physics";
 	}
 }

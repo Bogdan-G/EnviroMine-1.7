@@ -108,7 +108,7 @@ public abstract class HudItem {
 				return posX - 16 + (getHeight() / 2);
 			}
 			else if(!isLeftSide()) 
-				return posX - getTextFrameWidth() - 16  + (rotated? (getHeight() / 2) : 0);
+				return posX - getTextFrameWidth() - 16/* + (rotated? (getHeight() / 2) : 0)*/;
 			else 
 				return posX + getWidth() + getTextFrameWidth();
 		}

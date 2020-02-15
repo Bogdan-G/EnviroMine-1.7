@@ -40,7 +40,7 @@ public class WorldProviderCaves extends WorldProvider
 	@Override
 	public Vec3 getFogColor(float par1, float par2)
 	{
-        float f2 = 1F;//MathHelper.cos(1F * (float)Math.PI * 2.0F) * 2.0F + 0.5F;
+        /*float f2 = 1F;//MathHelper.cos(1F * (float)Math.PI * 2.0F) * 2.0F + 0.5F;
 
         if (f2 < 0.0F)
         {
@@ -57,8 +57,8 @@ public class WorldProviderCaves extends WorldProvider
         float f5 = 1.0F;
         f3 *= f2 * 0.94F + 0.06F;
         f4 *= f2 * 0.94F + 0.06F;
-        f5 *= f2 * 0.91F + 0.09F;
-        return Vec3.createVectorHelper((double)f3, (double)f4, (double)f5);
+        f5 *= f2 * 0.91F + 0.09F;*/
+        return Vec3.createVectorHelper(0.7529412D, 0.84705883D, 1.0D);
 	}
 	
 	/**

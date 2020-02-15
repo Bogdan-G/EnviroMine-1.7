@@ -43,7 +43,7 @@ public class MapGenModifiedCaves extends MapGenBase
 		double d5 = (double)(p_151541_4_ * 16 + 8);
 		float f3 = 0.0F;
 		float f4 = 0.0F;
-		Random random = new Random(p_151541_1_);
+		Random random = new org.bogdang.modifications.random.XSTR(p_151541_1_);
 		
 		if (p_151541_16_ <= 0)
 		{

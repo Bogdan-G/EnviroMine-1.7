@@ -23,8 +23,8 @@ import enviromine.utils.ModIdentification;
 
 public class EntityProperties implements SerialisableProperty, PropertyBase
 {
-	public static final EntityProperties base = new EntityProperties();
 	static String[] EPName;
+	public static final EntityProperties base = new EntityProperties();
 	
 	public int id;
 	public boolean shouldTrack;
@@ -384,7 +384,7 @@ public class EntityProperties implements SerialisableProperty, PropertyBase
 	@Override
 	public void generateEmpty(Configuration config, Object obj)
 	{
-		if(obj == null || !(obj instanceof Integer))
+		if(!(obj instanceof Integer))
 		{
 			EnviroMine.logger.log(Level.ERROR, "Tried to register config with non EntityLivingBase id!", new Exception());
 			return;

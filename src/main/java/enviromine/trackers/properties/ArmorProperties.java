@@ -2,6 +2,7 @@ package enviromine.trackers.properties;
 
 import java.io.File;
 import java.util.Iterator;
+import java.util.*;
 
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
@@ -22,8 +23,8 @@ import enviromine.utils.EnviroUtils;
 
 public class ArmorProperties implements SerialisableProperty, PropertyBase
 {
-	public static final ArmorProperties base = new ArmorProperties();
 	static String[] APName;
+	public static final ArmorProperties base = new ArmorProperties();
 	
 	public Item item;
 	public String name;
@@ -318,7 +319,7 @@ public class ArmorProperties implements SerialisableProperty, PropertyBase
 	@Override
 	public void generateEmpty(Configuration config, Object obj)
 	{
-		if(obj == null || !(obj instanceof ItemArmor))
+		if(!(obj instanceof ItemArmor))
 		{
 			EnviroMine.logger.log(Level.ERROR, "Tried to register config with non armor object!", new Exception());
 			return;
@@ -334,7 +335,7 @@ public class ArmorProperties implements SerialisableProperty, PropertyBase
 			return;
 		}
 		
-		String catName = this.categoryName() + "." + EnviroUtils.replaceULN(armor.getUnlocalizedName() +"_"+ regName);
+		String catName = this.categoryName() + "." + EnviroUtils.replaceULN(armor.getUnlocalizedName() +"_"+ Arrays.toString(regName));
 		
 		config.addCustomCategoryComment(catName, "");
 		config.get(catName, APName[0], Item.itemRegistry.getNameForObject(armor)).getString();
