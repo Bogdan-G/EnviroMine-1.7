@@ -586,7 +586,7 @@ public class EM_PhysManager
 	{
 		int[] data = new int[]{0,0,0,0,0};
 		
-		if ((ReduceX < 0 && (x < 0 && (ReduceX + x > 10 || ReduceX + x < -10) || x > 0 && (-ReduceX + x > 10 || -ReduceX + x < -10)) || (x < 0 && (ReduceX + x > 10 || ReduceX + x < -10) || x > 0 && (ReduceX - x > 10 || ReduceX - x < -10))) || (ReduceY < 0 && (y < 0 && (ReduceY + y > 10 || ReduceY + y < -10) || y > 0 && (-ReduceY + y > 10 || -ReduceY + y < -10)) || (y < 0 && (ReduceY + y > 10 || ReduceY + y < -10) || y > 0 && (ReduceY - y > 10 || ReduceY - y < -10))) || (ReduceZ < 0 && (z < 0 && (ReduceZ + z > 10 || ReduceZ + z < -10) || z > 0 && (-ReduceZ + z > 10 || -ReduceZ + z < -10)) || (z < 0 && (ReduceZ + z > 10 || ReduceZ + z < -10) || z > 0 && (ReduceZ - z > 10 || ReduceZ - z < -10)))) {
+		if (EM_Settings.ReducegetEntitiesWithinAABB && ((ReduceX < 0 && (x < 0 && (ReduceX + x > 10 || ReduceX + x < -10) || x > 0 && (-ReduceX + x > 10 || -ReduceX + x < -10)) || (x < 0 && (ReduceX + x > 10 || ReduceX + x < -10) || x > 0 && (ReduceX - x > 10 || ReduceX - x < -10))) || (ReduceY < 0 && (y < 0 && (ReduceY + y > 10 || ReduceY + y < -10) || y > 0 && (-ReduceY + y > 10 || -ReduceY + y < -10)) || (y < 0 && (ReduceY + y > 10 || ReduceY + y < -10) || y > 0 && (ReduceY - y > 10 || ReduceY - y < -10))) || (ReduceZ < 0 && (z < 0 && (ReduceZ + z > 10 || ReduceZ + z < -10) || z > 0 && (-ReduceZ + z > 10 || -ReduceZ + z < -10)) || (z < 0 && (ReduceZ + z > 10 || ReduceZ + z < -10) || z > 0 && (ReduceZ - z > 10 || ReduceZ - z < -10))))) {
 		ReduceX = x;
 		ReduceY = y;
 		ReduceZ = z;
